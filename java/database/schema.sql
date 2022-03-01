@@ -45,11 +45,12 @@ CREATE TABLE beers (
     beer_id int DEFAULT nextval('seq_beer_id'::regclass) NOT NULL,
     beer_name varchar(100) NOT NULL,
     description varchar (300) NOT NULL,
-    image bytea NOT NULL,
+    image varchar(100) NOT NULL,
     abv int NOT NULL,
     type varchar(50),
-    CONSTRAINT PK_beer PRIMARY KEY (beer_id)
---    CONSTRAINT FK_user FOREIGN KEY (user_id) REFERENCES users(user_id)
+    userId int NOT NULL,
+    PRIMARY KEY (beer_id),
+    FOREIGN KEY (userId) REFERENCES users(user_id)
 ) ;
 
 CREATE TABLE brewery (
@@ -61,9 +62,11 @@ CREATE TABLE brewery (
     images bytea NOT NULL,
     address varchar(100) NOT NULL,
     activity varchar(10) NOT NULL,
-    CONSTRAINT PK_brewery PRIMARY KEY (brewery_id)
---    CONSTRAINT FK_beer FOREIGN KEY (beer_id) REFERENCES beers(beer_id),
---    CONSTRAINT FK_user FOREIGN KEY (user_id) REFERENCES users(user_id)
+    beer_id int NOT NULL,
+    user_id int NOT NULL,
+    PRIMARY KEY (brewery_id),
+    FOREIGN KEY (beer_id) REFERENCES beers(beer_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
 
 ) ;
 
@@ -72,9 +75,11 @@ CREATE TABLE reviews (
     user_name varchar(10) NOT NULL,
     stars int NOT NULL,
     review varchar(300) NOT NULL,
-    CONSTRAINT PK_review PRIMARY KEY (review_id)
---    CONSTRAINT FK_beer  FOREIGN KEY (beer_id) REFERENCES beers(beer_id),
---    CONSTRAINT FK_user FOREIGN KEY (user_id) REFERENCES users(user_id)
+    beer_id int NOT NULL,
+    user_id int NOT NULL,
+    PRIMARY KEY (review_id),
+    FOREIGN KEY (beer_id) REFERENCES beers(beer_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
 ) ;
 
 
