@@ -4,6 +4,7 @@ import com.techelevator.dao.BreweryDao;
 import com.techelevator.model.Brewery;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RequestMapping(path="/brewery")
@@ -31,28 +32,22 @@ public class BreweryController {
         public Brewery getBreweryByName(@PathVariable ("brewery_name") String brewery_name){
         return breweryDao.findByName(brewery_name);
     }
-//
-//    @RequestMapping(value = "/name/{beerName}", method = RequestMethod.GET)
-//    public Beer getBeersByName(@PathVariable ("beerName") String beerName) {
-//        return beerDao.findByName(beerName);
-//    }
-//
-//    @RequestMapping(method = RequestMethod.POST)
-//    public Beer createBeer(@Valid @RequestBody Beer beer) {
-//        beerDao.create(beer.getBeerName(), beer.getDescription(), beer.getImage(), beer.getAbv(), beer.getType(), beer.getUserId());
-//        return beer;
-//    }
 
- //   @RequestMapping(path = "/delete/{beerId}", method = RequestMethod.DELETE)
-//    public void deleteBeer(@PathVariable int beerId) {
-//
-//        beerDao.deleteBeer(beerId);
-//    }
-//
-//    @RequestMapping(path = "/update/{beerId}", method = RequestMethod.PUT)
-//    public Beer updateById(@Valid @RequestBody Beer beer, @PathVariable int beerId) {
-//        beerDao.updateById(beerId, beer);
-//        return beer;
-//    }
+    @RequestMapping(method = RequestMethod.POST)
+    public Brewery createBrewery(@Valid @RequestBody Brewery brewery){
+        breweryDao.create(brewery.getBrewery_name(), brewery.getPhone_number(), brewery.getHistory(), brewery.getHours_of_operation(), brewery.getImage(), brewery.getAddress(), brewery.getActivity(), brewery.getBeer_id(), brewery.getUser_id());
+        return brewery;
+    }
+
+    @RequestMapping(path = "/delete/{brewery_id}", method = RequestMethod.DELETE)
+    public void deleteBrewery(@PathVariable int brewer_id){
+        breweryDao.deleteBrewery(brewer_id);
+    }
+
+    @RequestMapping(path = "/update/{brewery_id}", method = RequestMethod.PUT)
+    public Brewery updateBreweryById( @Valid @RequestBody Brewery brewery, @PathVariable int brewery_id){
+        breweryDao.updateBreweryById(brewery_id, brewery);
+        return brewery;
+    }
 
 }
