@@ -32,7 +32,7 @@ public class BreweryController {
         public Brewery getBreweryByName(@PathVariable ("brewery_name") String brewery_name){
         return breweryDao.findByName(brewery_name);
     }
-
+    //works but, ask why in tech squad
     @RequestMapping(method = RequestMethod.POST)
     public Brewery createBrewery(@Valid @RequestBody Brewery brewery){
         breweryDao.create(brewery.getBrewery_name(), brewery.getPhone_number(), brewery.getHistory(), brewery.getHours_of_operation(), brewery.getImage(), brewery.getAddress(), brewery.getActivity(), brewery.getBeer_id(), brewery.getUser_id());
