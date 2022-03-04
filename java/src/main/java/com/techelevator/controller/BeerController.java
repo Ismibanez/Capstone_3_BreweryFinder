@@ -18,7 +18,7 @@ public class BeerController {
         this.beerDao = beerDao;
         }
 
-    //having trouble here with these get methods.
+
     @RequestMapping(path = "", method = RequestMethod.GET)
     public List<Beer> getBeers() {
         return this.beerDao.findAll();
