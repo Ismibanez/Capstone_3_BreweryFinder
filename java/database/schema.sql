@@ -59,7 +59,7 @@ CREATE TABLE brewery (
     phone_number varchar(10) NOT NULL,
     history varchar(300) NOT NULL,
     hours_of_operation varchar(50) NOT NULL,
-    images bytea NOT NULL,
+    images varchar (100) NOT NULL,
     address varchar(100) NOT NULL,
     activity varchar(10) NOT NULL,
     beer_id int NOT NULL,

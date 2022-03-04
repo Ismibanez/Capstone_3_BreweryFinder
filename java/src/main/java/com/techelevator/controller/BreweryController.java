@@ -28,7 +28,7 @@ public class BreweryController {
         return breweryDao.getBreweryById(brewery_id);
     }
 
-    @RequestMapping (value="/name/{brewery_name)", method=RequestMethod.GET)
+    @RequestMapping (value = "/name/{brewery_name)", method=RequestMethod.GET)
         public Brewery getBreweryByName(@PathVariable ("brewery_name") String brewery_name){
         return breweryDao.findByName(brewery_name);
     }
