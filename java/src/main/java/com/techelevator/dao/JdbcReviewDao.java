@@ -65,9 +65,19 @@ public class JdbcReviewDao implements ReviewDao{
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
         String id_column = "review_id";
         reviewCreated = jdbcTemplate.update(con -> {
-            PreparedStatement ps = con.prepareStatement(insertReview, new String )
-        })
+            PreparedStatement ps = con.prepareStatement(insertReview, new String[]{id_column});
+            ps.setString(1, userName);
+            ps.setInt(2, stars);
+            ps.setString(3, review);
+            ps.setInt(4, beerId);
+            ps.setInt(5, userId);
+            return ps;
+        }, keyHolder) == 1;
+        int newReviewId = (int) keyHolder.getKeys().get(id_column);
+
+        return reviewCreated;
     }
+
 
     @Override
     public boolean deleteReview(int reviewId) {

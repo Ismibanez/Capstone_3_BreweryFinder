@@ -56,7 +56,7 @@ CREATE TABLE beers (
 CREATE TABLE brewery (
     brewery_id int DEFAULT nextval('seq_brewery_id'::regclass) NOT NULL,
     brewery_name varchar(100) NOT NULL,
-    phone_number varchar(10) NOT NULL,
+    phone_number varchar(100) NOT NULL,
     history varchar(300) NOT NULL,
     hours_of_operation varchar(50) NOT NULL,
     images varchar (100) NOT NULL,
