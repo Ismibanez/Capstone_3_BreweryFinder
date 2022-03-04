@@ -47,7 +47,7 @@ CREATE TABLE beers (
     description varchar (300) NOT NULL,
     image varchar(100) NOT NULL,
     abv int NOT NULL,
-    type varchar(50),
+    beer_kind varchar(50),
     userId int NOT NULL,
     PRIMARY KEY (beer_id),
     FOREIGN KEY (userId) REFERENCES users(user_id)
