@@ -19,9 +19,9 @@ public class BeerController {
         }
 
     //having trouble here with these get methods.
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(path = "", method = RequestMethod.GET)
     public List<Beer> getBeers() {
-        return beerDao.findAll();
+        return this.beerDao.findAll();
     }
 
     @RequestMapping(value = "/id/{beerId}", method = RequestMethod.GET)
@@ -36,7 +36,7 @@ public class BeerController {
 
     @RequestMapping(method = RequestMethod.POST)
     public Beer createBeer(@Valid @RequestBody Beer beer) {
-        beerDao.create(beer.getBeerName(), beer.getDescription(), beer.getImage(), beer.getAbv(), beer.getType(), beer.getUserId());
+        beerDao.create(beer.getBeerName(), beer.getDescription(), beer.getImage(), beer.getAbv(), beer.getBeerKind(), beer.getUserId());
         return beer;
     }
 

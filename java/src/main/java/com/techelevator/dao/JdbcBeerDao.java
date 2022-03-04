@@ -1,12 +1,9 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Beer;
-import com.techelevator.model.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.sql.PreparedStatement;
@@ -28,8 +25,10 @@ public class JdbcBeerDao implements BeerDao {
         // "Select * from beer Where ? = ?"
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+
         while(results.next()) {
-            beers.add(mapRowToBeer(results));
+            Beer beer = mapRowToBeer(results);
+            beers.add(beer);
 
 
         }
@@ -64,10 +63,10 @@ public class JdbcBeerDao implements BeerDao {
     }
 
     @Override
-    public boolean create(String beerName, String description, String image, int abv, String type, int userId) {
+    public boolean create(String beerName, String description, String image, int abv, String kind, int userId) {
         boolean beerCreated = false;
 
-        String insertBeer = "INSERT INTO beers (beer_name, description, image, abv, type, userid) values(?,?,?,?,?,?)";
+        String insertBeer = "INSERT INTO beers (beer_name, description, image, abv, beer_kind, userid) values(?,?,?,?,?,?)";
 
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
         String id_column = "beer_id";
@@ -77,7 +76,7 @@ public class JdbcBeerDao implements BeerDao {
                 ps.setString(2, description);
                 ps.setString(3, image);
                 ps.setInt(4, abv);
-                ps.setString(5, type);
+                ps.setString(5, kind);
                 ps.setInt(6, userId);
                 return ps;
             }, keyHolder) == 1;
@@ -93,8 +92,8 @@ public class JdbcBeerDao implements BeerDao {
 
     @Override
     public boolean updateById(int beerId, Beer updateBeer) {
-        String sql = "UPDATE beers SET beer_name = ?, description = ?, abv = ?, image = ?, type = ?, userid = ? WHERE beer_id = ?";
-        return jdbcTemplate.update(sql, updateBeer.getBeerName(), updateBeer.getDescription(), updateBeer.getAbv(), updateBeer.getImage(), updateBeer.getType(), updateBeer.getUserId(), beerId) == 1;
+        String sql = "UPDATE beers SET beer_name = ?, description = ?, abv = ?, image = ?, beer_kind = ?, userid = ? WHERE beer_id = ?";
+        return jdbcTemplate.update(sql, updateBeer.getBeerName(), updateBeer.getDescription(), updateBeer.getAbv(), updateBeer.getImage(), updateBeer.getBeerKind(), updateBeer.getUserId(), beerId) == 1;
 
 
     }
@@ -102,12 +101,12 @@ public class JdbcBeerDao implements BeerDao {
 
     private Beer mapRowToBeer(SqlRowSet rs) {
         Beer beer = new Beer();
-        beer.setBeerId(rs.getInt("beer_id"));
-        beer.setBeerName(rs.getString("beerName"));
+        beer.setBeer_id(rs.getInt("beer_id"));
+        beer.setBeerName(rs.getString("beer_name"));
         beer.setDescription(rs.getString("description"));
         beer.setAbv(rs.getInt("abv"));
         beer.setImage(rs.getString("image"));
-        beer.setType(rs.getString("type"));
+        beer.setBeerKind(rs.getString("beer_kind"));
         beer.setUserId(rs.getInt("userid"));
         return beer;
     }
