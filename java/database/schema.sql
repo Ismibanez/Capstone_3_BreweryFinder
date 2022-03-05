@@ -102,3 +102,28 @@ INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpUL
 
 
 COMMIT TRANSACTION;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Message Ismael Ibanez, Taalaikul Meletiou
+
+
+
+
+
+
+
+
