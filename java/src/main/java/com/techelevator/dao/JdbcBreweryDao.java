@@ -67,7 +67,7 @@ public class JdbcBreweryDao implements BreweryDao{
     public boolean create(String brewery_name, String phone_number, String history, String hours_of_operation, String image, String address, String activity, int beer_id, int user_id) {
         boolean breweryCreated = false;
 
-        String insertBrewery = "INSERT INTO brewery (brewery_name, phone_number, history, hours_of_operation, image, address, activity, beer_id, user_id) values(?,?,?,?,?,?,?,?,?)";
+        String insertBrewery = "INSERT INTO brewery (brewery_name, phone_number, history, hours_of_operation, images, address, activity, beer_id, user_id) values(?,?,?,?,?,?,?,?,?)";
 
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
         String id_column = "beer_id";
@@ -97,7 +97,7 @@ public class JdbcBreweryDao implements BreweryDao{
 
     @Override
     public boolean updateBreweryById(int brewery_id, Brewery updateBrewery) {
-        String sql = "UPDATE brewery SET brewery_name = ?, phone_number = ?, history = ?, hours_of_operation = ?, image = ?, address = ?, activity = ?, beer_id = ?, user_id = ?  WHERE brewery_id = ?";
+        String sql = "UPDATE brewery SET brewery_name = ?, phone_number = ?, history = ?, hours_of_operation = ?, images = ?, address = ?, activity = ?, beer_id = ?, user_id = ?  WHERE brewery_id = ?";
         return jdbcTemplate.update(sql, updateBrewery.getBrewery_id(), updateBrewery.getBrewery_name(), updateBrewery.getPhone_number(), updateBrewery.getHistory(), updateBrewery.getHours_of_operation(), updateBrewery.getImage(), updateBrewery.getAddress(), updateBrewery.getActivity(), updateBrewery.getBeer_id(), updateBrewery.getUser_id(), brewery_id) == 1;
 
     }
@@ -109,7 +109,7 @@ public class JdbcBreweryDao implements BreweryDao{
         brewery.setPhone_number(rs.getString("phone_number"));
         brewery.setHistory(rs.getString("history"));
         brewery.setHours_of_operation(rs.getString("hours_of_operation"));
-        brewery.setImage(rs.getString("image"));
+        brewery.setImage(rs.getString("images"));
         brewery.setAddress(rs.getString("address"));
         brewery.setActivity(rs.getString("activity"));
         brewery.setBeer_id(rs.getInt("beer_id"));

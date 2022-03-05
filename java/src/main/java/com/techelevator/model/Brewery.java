@@ -7,7 +7,7 @@ public class Brewery {
      private String phone_number;
      private String history;
      private String hours_of_operation;
-     private String image;
+     private String images;
      private String address;
      private String activity;
      private int beer_id;
@@ -16,13 +16,13 @@ public class Brewery {
      public Brewery() {
      }
 
-     public Brewery(int brewery_id, String brewery_name, String phone_number, String history, String hours_of_operation, String image, String address, String activity, int beer_id, int user_id) {
+     public Brewery(int brewery_id, String brewery_name, String phone_number, String history, String hours_of_operation, String images, String address, String activity, int beer_id, int user_id) {
           this.brewery_id = brewery_id;
           this.brewery_name = brewery_name;
           this.phone_number = phone_number;
           this.history = history;
           this.hours_of_operation = hours_of_operation;
-          this.image = image;
+          this.images = images;
           this.address = address;
           this.activity = activity;
           this.beer_id = beer_id;
@@ -70,11 +70,11 @@ public class Brewery {
      }
 
      public String getImage() {
-          return image;
+          return images;
      }
 
      public void setImage(String image) {
-          this.image = image;
+          this.images = image;
      }
 
      public String getAddress() {

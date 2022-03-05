@@ -8,6 +8,8 @@ DROP TABLE IF EXISTS breweries;
 DROP SEQUENCE IF EXISTS seq_brewery_id;
 DROP TABLE IF EXISTS reviews;
 DROP SEQUENCE IF EXISTS seq_reviews_id;
+DROP TABLE IF EXISTS connection_table;
+DROP SEQUENCE IF EXISTS seq_connection_table_id;
 
 CREATE SEQUENCE seq_user_id
       INCREMENT BY 1
@@ -41,6 +43,7 @@ CREATE TABLE users (
     CONSTRAINT PK_user PRIMARY KEY (user_id)
 ) ;
 
+
 CREATE TABLE beers (
     beer_id int DEFAULT nextval('seq_beer_id'::regclass) NOT NULL,
     beer_name varchar(100) NOT NULL,
@@ -48,9 +51,7 @@ CREATE TABLE beers (
     image varchar(100) NOT NULL,
     abv int NOT NULL,
     type varchar(50),
-    userId int NOT NULL,
-    PRIMARY KEY (beer_id),
-    FOREIGN KEY (userId) REFERENCES users(user_id)
+    PRIMARY KEY (beer_id)
 ) ;
 
 CREATE TABLE brewery (
@@ -59,15 +60,10 @@ CREATE TABLE brewery (
     phone_number varchar(10) NOT NULL,
     history varchar(300) NOT NULL,
     hours_of_operation varchar(50) NOT NULL,
-    images bytea NOT NULL,
+    images varchar(100) NOT NULL,
     address varchar(100) NOT NULL,
-    activity varchar(10) NOT NULL,
-    beer_id int NOT NULL,
-    user_id int NOT NULL,
-    PRIMARY KEY (brewery_id),
-    FOREIGN KEY (beer_id) REFERENCES beers(beer_id),
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
-
+    activity varchar(100) NOT NULL,
+    PRIMARY KEY (brewery_id)
 ) ;
 
 CREATE TABLE reviews (
@@ -77,11 +73,28 @@ CREATE TABLE reviews (
     review varchar(300) NOT NULL,
     beer_id int NOT NULL,
     user_id int NOT NULL,
-    PRIMARY KEY (review_id),
-    FOREIGN KEY (beer_id) REFERENCES beers(beer_id),
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
+    PRIMARY KEY (review_id)
 ) ;
 
+CREATE SEQUENCE seq_connection_table_id
+        INCREMENT BY 1
+        NO MAXVALUE
+        NO MINVALUE
+        CACHE 1;
+
+CREATE TABLE connection_table(
+    connection_table_id int DEFAULT nextval('seq_connection_table_id'::regclass) NOT NULL,
+    PRIMARY KEY(connection_table_id),
+    user_id INT,
+    beer_id INT,
+    brewery_id INT,
+    review_id INT,
+    FOREIGN KEY user_id REFERENCES users(user_id),
+    FOREIGN KEY beer_id REFERENCES beers(beer_id),
+    FOREIGN KEY brewery_id REFERENCES brewery(brewery_id),
+    FOREIGN KEY review_id REFERENCES reviews(review_id)
+
+);
 
 
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
