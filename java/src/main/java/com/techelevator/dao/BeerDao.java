@@ -15,7 +15,7 @@ public interface BeerDao {
 
     int findIdByName(String beerName);
 
-    boolean create(String beerName, String description, String image, int abv, String kind, int userId);
+    boolean create(String beerName, String description, String image, int abv, String kind);
 
     boolean deleteBeer(int beerId);
 

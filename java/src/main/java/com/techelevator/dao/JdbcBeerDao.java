@@ -63,10 +63,10 @@ public class JdbcBeerDao implements BeerDao {
     }
 
     @Override
-    public boolean create(String beerName, String description, String image, int abv, String kind, int userId) {
+    public boolean create(String beerName, String description, String image, int abv, String kind) {
         boolean beerCreated = false;
 
-        String insertBeer = "INSERT INTO beers (beer_name, description, image, abv, beer_kind, userid) values(?,?,?,?,?,?)";
+        String insertBeer = "INSERT INTO beers (beer_name, description, image, abv, beer_kind) values(?,?,?,?,?)";
 
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
         String id_column = "beer_id";
@@ -77,7 +77,6 @@ public class JdbcBeerDao implements BeerDao {
                 ps.setString(3, image);
                 ps.setInt(4, abv);
                 ps.setString(5, kind);
-                ps.setInt(6, userId);
                 return ps;
             }, keyHolder) == 1;
         int newBeerId = (int) keyHolder.getKeys().get(id_column);
@@ -92,8 +91,8 @@ public class JdbcBeerDao implements BeerDao {
 
     @Override
     public boolean updateById(int beerId, Beer updateBeer) {
-        String sql = "UPDATE beers SET beer_name = ?, description = ?, abv = ?, image = ?, beer_kind = ?, userid = ? WHERE beer_id = ?";
-        return jdbcTemplate.update(sql, updateBeer.getBeerName(), updateBeer.getDescription(), updateBeer.getAbv(), updateBeer.getImage(), updateBeer.getBeerKind(), updateBeer.getUserId(), beerId) == 1;
+        String sql = "UPDATE beers SET beer_name = ?, description = ?, abv = ?, image = ?, beer_kind = ? WHERE beer_id = ?";
+        return jdbcTemplate.update(sql, updateBeer.getBeerName(), updateBeer.getDescription(), updateBeer.getAbv(), updateBeer.getImage(), updateBeer.getBeerKind(), beerId) == 1;
 
 
     }
@@ -107,7 +106,6 @@ public class JdbcBeerDao implements BeerDao {
         beer.setAbv(rs.getInt("abv"));
         beer.setImage(rs.getString("image"));
         beer.setBeerKind(rs.getString("beer_kind"));
-        beer.setUserId(rs.getInt("userid"));
         return beer;
     }
 

@@ -14,7 +14,7 @@ public interface BreweryDao {
 
     int findBreweryIdByName(String brewery_name);
 
-    boolean create(String brewery_name, String phone_number, String history, String hours_of_operation, String image, String address, String activity, int beer_id, int user_id);
+    boolean create(String brewery_name, String phone_number, String history, String hours_of_operation, String image, String address, String activity);
 
     boolean deleteBrewery (int brewery_id);
 

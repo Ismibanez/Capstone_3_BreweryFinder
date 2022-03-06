@@ -8,7 +8,7 @@ public class Beer {
     private int abv;
     private String image;
     private String beerKind;
-    private int userId;
+
 
     public int getBeer_id() { return beer_id; }
 
@@ -45,15 +45,7 @@ public class Beer {
     public void setImage(String image) {
         this.image = image;
     }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
+    
     public String getBeerKind() {
         return beerKind;
     }

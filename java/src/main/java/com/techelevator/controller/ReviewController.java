@@ -35,7 +35,7 @@ public class ReviewController {
 
     @RequestMapping(method = RequestMethod.POST)
     public Review createReview(@RequestBody Review review) {
-        this.reviewDao.createReview(review.getUserName(), review.getStars(), review.getReview(), review.getBeerId(), review.getUserId());
+        this.reviewDao.createReview(review.getUserName(), review.getStars(), review.getReview());
         return review;
     }
 

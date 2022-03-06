@@ -33,6 +33,18 @@ public class JdbcReviewDao implements ReviewDao{
         return reviews;
     }
 
+//    public List<Review> reviewsByBeerId(int beer_id){
+//        List<Review> reviewsByBeer = new ArrayList<>();
+//        String sql = "SELECT * FROM reviews WHERE beer_id =?";
+//
+//        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+//
+//        while(results.next()){
+//            Review reviewByBeer = mapRowToReview(results);
+//            reviewByBeer.add()
+//        }
+//    }
+
     @Override
     public Review getReviewById(int reviewId) {
         Review review = null;
@@ -57,10 +69,10 @@ public class JdbcReviewDao implements ReviewDao{
     }
 
     @Override
-    public boolean createReview(String userName, int stars, String review, int beerId, int userId) {
+    public boolean createReview(String userName, int stars, String review) {
         boolean reviewCreated = false;
 
-        String insertReview = "INSERT INTO reviews (user_name, stars, review, beer_id, user_id) values(?,?,?,?,?)";
+        String insertReview = "INSERT INTO reviews (user_name, stars, review) values(?,?,?)";
 
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
         String id_column = "review_id";
@@ -69,14 +81,14 @@ public class JdbcReviewDao implements ReviewDao{
                 ps.setString(1, userName);
                 ps.setInt(2, stars);
                 ps.setString(3, review);
-                ps.setInt(4, beerId);
-                ps.setInt(5, userId);
                 return ps;
             }, keyHolder) == 1;
         int newReviewId = (int) keyHolder.getKeys().get(id_column);
 
         return reviewCreated;
     }
+
+
 
     @Override
     public boolean deleteReview(int reviewId) {
@@ -86,8 +98,8 @@ public class JdbcReviewDao implements ReviewDao{
 
     @Override
     public boolean updateById(int reviewId, Review updatedReview) {
-        String sql = "UPDATE reviews SET user_name = ?, stars = ?, review = ?, beer_id = ?, user_id = ? WHERE review_id = ?";
-        return jdbcTemplate.update(sql, updatedReview.getUserName(), updatedReview.getStars(), updatedReview.getReview(), updatedReview.getBeerId(), updatedReview.getUserId(), reviewId) == 1;
+        String sql = "UPDATE reviews SET user_name = ?, stars = ?, review = ? WHERE review_id = ?";
+        return jdbcTemplate.update(sql, updatedReview.getUserName(), updatedReview.getStars(), updatedReview.getReview(), reviewId) == 1;
     }
 
     private Review mapRowToReview(SqlRowSet rs) {
@@ -96,8 +108,6 @@ public class JdbcReviewDao implements ReviewDao{
         review.setUserName(rs.getString("user_name"));
         review.setStars(rs.getInt("stars"));
         review.setReview(rs.getString("review"));
-        review.setBeerId(rs.getInt("beer_id"));
-        review.setUserId(rs.getInt("user_id"));
         return review;
 
     }

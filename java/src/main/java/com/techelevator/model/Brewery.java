@@ -10,8 +10,7 @@ public class Brewery {
      private String images;
      private String address;
      private String activity;
-     private int beer_id;
-     private int user_id;
+
 
      public Brewery() {
      }
@@ -25,8 +24,7 @@ public class Brewery {
           this.images = images;
           this.address = address;
           this.activity = activity;
-          this.beer_id = beer_id;
-          this.user_id = user_id;
+
      }
 
      public int getBrewery_id() {
@@ -93,19 +91,5 @@ public class Brewery {
           this.activity = activity;
      }
 
-     public int getBeer_id() {
-          return beer_id;
-     }
 
-     public void setBeer_id(int beer_id) {
-          this.beer_id = beer_id;
-     }
-
-     public int getUser_id() {
-          return user_id;
-     }
-
-     public void setUser_id(int user_id) {
-          this.user_id = user_id;
-     }
 }

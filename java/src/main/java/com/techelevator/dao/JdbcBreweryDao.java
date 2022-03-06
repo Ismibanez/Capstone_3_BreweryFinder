@@ -64,10 +64,10 @@ public class JdbcBreweryDao implements BreweryDao{
     }
 
     @Override
-    public boolean create(String brewery_name, String phone_number, String history, String hours_of_operation, String image, String address, String activity, int beer_id, int user_id) {
+    public boolean create(String brewery_name, String phone_number, String history, String hours_of_operation, String image, String address, String activity) {
         boolean breweryCreated = false;
 
-        String insertBrewery = "INSERT INTO brewery (brewery_name, phone_number, history, hours_of_operation, images, address, activity, beer_id, user_id) values(?,?,?,?,?,?,?,?,?)";
+        String insertBrewery = "INSERT INTO brewery (brewery_name, phone_number, history, hours_of_operation, images, address, activity) values(?,?,?,?,?,?,?)";
 
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
         String id_column = "beer_id";
@@ -80,8 +80,6 @@ public class JdbcBreweryDao implements BreweryDao{
             ps.setString(5, image);
             ps.setString(6, address);
             ps.setString(7, activity);
-            ps.setInt(8, beer_id);
-            ps.setInt(9, user_id);
             return ps;
         }, keyHolder) == 1;
         int newBreweryId = (int) keyHolder.getKeys().get(id_column);
@@ -97,8 +95,8 @@ public class JdbcBreweryDao implements BreweryDao{
 
     @Override
     public boolean updateBreweryById(int brewery_id, Brewery updateBrewery) {
-        String sql = "UPDATE brewery SET brewery_name = ?, phone_number = ?, history = ?, hours_of_operation = ?, images = ?, address = ?, activity = ?, beer_id = ?, user_id = ?  WHERE brewery_id = ?";
-        return jdbcTemplate.update(sql, updateBrewery.getBrewery_id(), updateBrewery.getBrewery_name(), updateBrewery.getPhone_number(), updateBrewery.getHistory(), updateBrewery.getHours_of_operation(), updateBrewery.getImage(), updateBrewery.getAddress(), updateBrewery.getActivity(), updateBrewery.getBeer_id(), updateBrewery.getUser_id(), brewery_id) == 1;
+        String sql = "UPDATE brewery SET brewery_name = ?, phone_number = ?, history = ?, hours_of_operation = ?, images = ?, address = ?, activity = ?  WHERE brewery_id = ?";
+        return jdbcTemplate.update(sql, updateBrewery.getBrewery_id(), updateBrewery.getBrewery_name(), updateBrewery.getPhone_number(), updateBrewery.getHistory(), updateBrewery.getHours_of_operation(), updateBrewery.getImage(), updateBrewery.getAddress(), updateBrewery.getActivity(), brewery_id) == 1;
 
     }
 
@@ -112,8 +110,6 @@ public class JdbcBreweryDao implements BreweryDao{
         brewery.setImage(rs.getString("images"));
         brewery.setAddress(rs.getString("address"));
         brewery.setActivity(rs.getString("activity"));
-        brewery.setBeer_id(rs.getInt("beer_id"));
-        brewery.setUser_id(rs.getInt("user_id"));
         return brewery;
     }
 }

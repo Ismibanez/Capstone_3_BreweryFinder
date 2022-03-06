@@ -6,8 +6,6 @@ public class Review {
     private String userName;
     private int stars;
     private String review;
-    private int beerId;
-    private int userId;
 
     public int getReviewId() {
         return reviewId;
@@ -41,19 +39,4 @@ public class Review {
         this.review = review;
     }
 
-    public int getBeerId() {
-        return beerId;
-    }
-
-    public void setBeerId(int beerId) {
-        this.beerId = beerId;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 }

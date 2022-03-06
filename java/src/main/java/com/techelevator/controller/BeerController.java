@@ -36,7 +36,7 @@ public class BeerController {
 
     @RequestMapping(method = RequestMethod.POST)
     public Beer createBeer(@Valid @RequestBody Beer beer) {
-        beerDao.create(beer.getBeerName(), beer.getDescription(), beer.getImage(), beer.getAbv(), beer.getBeerKind(), beer.getUserId());
+        beerDao.create(beer.getBeerName(), beer.getDescription(), beer.getImage(), beer.getAbv(), beer.getBeerKind());
         return beer;
     }
 
