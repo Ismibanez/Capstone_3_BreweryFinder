@@ -10,12 +10,12 @@ public interface ReviewDao {
 
     Review getReviewById(int reviewId);
 
-    Review getReviewByName(String userName);
-
-    boolean createReview( String userName, int stars, String review);
+    boolean createReview(int stars, String review);
 
     boolean deleteReview(int reviewId);
 
     boolean updateById(int reviewId, Review updatedReview);
+
+    Double getAvgReview(int beerId);
 
 }

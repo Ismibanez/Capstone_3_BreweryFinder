@@ -63,10 +63,10 @@ public class JdbcBeerDao implements BeerDao {
     }
 
     @Override
-    public boolean create(String beerName, String description, String image, int abv, String kind) {
+    public boolean create(String beerName, String description, String image, int abv, String type) {
         boolean beerCreated = false;
 
-        String insertBeer = "INSERT INTO beers (beer_name, description, image, abv, beer_kind) values(?,?,?,?,?)";
+        String insertBeer = "INSERT INTO beers (beer_name, description, image, abv, type) values(?,?,?,?,?)";
 
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
         String id_column = "beer_id";
@@ -76,7 +76,7 @@ public class JdbcBeerDao implements BeerDao {
                 ps.setString(2, description);
                 ps.setString(3, image);
                 ps.setInt(4, abv);
-                ps.setString(5, kind);
+                ps.setString(5, type);
                 return ps;
             }, keyHolder) == 1;
         int newBeerId = (int) keyHolder.getKeys().get(id_column);
@@ -91,8 +91,8 @@ public class JdbcBeerDao implements BeerDao {
 
     @Override
     public boolean updateById(int beerId, Beer updateBeer) {
-        String sql = "UPDATE beers SET beer_name = ?, description = ?, abv = ?, image = ?, beer_kind = ? WHERE beer_id = ?";
-        return jdbcTemplate.update(sql, updateBeer.getBeerName(), updateBeer.getDescription(), updateBeer.getAbv(), updateBeer.getImage(), updateBeer.getBeerKind(), beerId) == 1;
+        String sql = "UPDATE beers SET beer_name = ?, description = ?, abv = ?, image = ?, type = ? WHERE beer_id = ?";
+        return jdbcTemplate.update(sql, updateBeer.getBeerName(), updateBeer.getDescription(), updateBeer.getAbv(), updateBeer.getImage(), updateBeer.getType(), beerId) == 1;
 
 
     }
@@ -105,7 +105,7 @@ public class JdbcBeerDao implements BeerDao {
         beer.setDescription(rs.getString("description"));
         beer.setAbv(rs.getInt("abv"));
         beer.setImage(rs.getString("image"));
-        beer.setBeerKind(rs.getString("beer_kind"));
+        beer.setType(rs.getString("type"));
         return beer;
     }
 

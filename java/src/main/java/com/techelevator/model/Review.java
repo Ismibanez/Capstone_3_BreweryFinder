@@ -3,7 +3,6 @@ package com.techelevator.model;
 public class Review {
 
     private int reviewId;
-    private String userName;
     private int stars;
     private String review;
 
@@ -13,14 +12,6 @@ public class Review {
 
     public void setReviewId(int reviewId) {
         this.reviewId = reviewId;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public int getStars() {

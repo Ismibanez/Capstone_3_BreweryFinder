@@ -28,14 +28,9 @@ public class ReviewController {
         return this.reviewDao.getReviewById(reviewId);
     }
 
-    @RequestMapping(path = "/reviewerName/{userName}", method = RequestMethod.GET)
-    public Review getReviewByName(@PathVariable ("userName") String userName) {
-        return this.reviewDao.getReviewByName(userName);
-    }
-
-    @RequestMapping(method = RequestMethod.POST)
-    public Review createReview(@RequestBody Review review) {
-        this.reviewDao.createReview(review.getUserName(), review.getStars(), review.getReview());
+    @RequestMapping(path = "/{beerId}", method = RequestMethod.POST)
+    public Review createReview(@RequestBody Review review, @PathVariable int beerId) {
+        this.reviewDao.createReview(review.getStars(), review.getReview());
         return review;
     }
 
@@ -48,5 +43,11 @@ public class ReviewController {
         public Review updateById(@Valid @RequestBody Review review, @PathVariable int reviewId) {
             this.reviewDao.updateById(reviewId, review);
             return review;
-        }
+    }
+
+    @RequestMapping(path = "/avgReview/{beerId}", method = RequestMethod.GET)
+    public Double getAvgReview(@PathVariable int beerId) {
+        return this.reviewDao.getAvgReview(beerId);
+
+    }
 }

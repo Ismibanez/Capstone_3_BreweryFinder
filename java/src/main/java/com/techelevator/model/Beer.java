@@ -7,7 +7,7 @@ public class Beer {
     private String description;
     private int abv;
     private String image;
-    private String beerKind;
+    private String type;
 
 
     public int getBeer_id() { return beer_id; }
@@ -46,11 +46,11 @@ public class Beer {
         this.image = image;
     }
     
-    public String getBeerKind() {
-        return beerKind;
+    public String getType() {
+        return type;
     }
 
-    public void setBeerKind(String beerKind) {
-        this.beerKind = beerKind;
+    public void setType(String type) {
+        this.type = type;
     }
 }
