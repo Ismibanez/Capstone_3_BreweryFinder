@@ -3,7 +3,7 @@ import { Component } from 'react/cjs/react.production.min';
 import CardList from '../CardList';
 import axios from 'axios';
 import Header from './Header';
-import { Card, Button } from 'react-bootstrap'
+import { Card, CardBody, CardTitle, CardText, Button, Container, Col, CardGroup } from 'reactstrap';
 import Scroll from '../Scroll';
 
 class Beers extends Component {
@@ -30,16 +30,21 @@ class Beers extends Component {
         const beerList = beers.length ? (
             beers.map(beer => {
                return (
-                    <Card style={{ width: '18rem' }}>
-                        <Card.Img variant="top" src="holder.js/100px180" />
-                        <Card.Body>
-                        <Card.Title>{beer.beerName}</Card.Title>
-                        <Card.Text>
-                            {beer.description}
-                        </Card.Text>
-                        <Button variant="primary">Go somewhere</Button>
-                        </Card.Body>
-                    </Card>
+                    <Col sm="3">
+                        <Card body color="secondary" outline >
+                            <CardBody>
+                                <CardTitle tag="h3">
+                                    {beer.beerName}
+                                </CardTitle>
+                                <CardText>
+                                    {beer.description}
+                                </CardText>
+                                <Button>
+                                    Reviews
+                                </Button>
+                            </CardBody>
+                        </Card>
+                    </Col>
                ) 
             })
         ) : (
@@ -47,15 +52,15 @@ class Beers extends Component {
                 <h1>Loading...</h1>
             </div>);
         return(
-            <div>
+            <Container>
                 <div>
                     <Scroll>
-                        <div className=''>
-                        { beerList }
-                        </div>
+                        <CardGroup>
+                            { beerList }
+                        </CardGroup>
                     </Scroll>
                 </div>
-            </div>
+            </Container>
         )
     }
 }

@@ -2,7 +2,8 @@ import Main from './Components/Main/Main'
 import {Provider} from 'react-redux'
 import {BrowserRouter} from 'react-router-dom'
 import {ConfigureStore} from './Redux/configureStore'
-import bootstrap from 'bootstrap'
+import 'reactstrap';
+
 
 const store = ConfigureStore();
 

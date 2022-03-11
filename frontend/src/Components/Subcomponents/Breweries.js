@@ -3,8 +3,9 @@ import { Component } from 'react/cjs/react.production.min';
 import CardList from '../CardList';
 import axios from 'axios';
 import Header from './Header';
-import { Card, Button } from 'react-bootstrap'
+// import { Container, Card, Button } from 'react-bootstrap'
 import Scroll from '../Scroll';
+import { Card, CardBody, CardTitle, CardText, Button, Container, Col, CardGroup } from 'reactstrap';
 
 class Breweries extends Component {
     
@@ -30,16 +31,33 @@ class Breweries extends Component {
         const breweryList = breweries.length ? (
             breweries.map(brewery => {
                return (
-                    <Card style={{ width: '18rem' }}>
-                        <Card.Img variant="top" src="holder.js/100px180" />
-                        <Card.Body>
-                        <Card.Title>{brewery.brewery_name}</Card.Title>
-                        <Card.Text>
-                            {brewery.history}
-                        </Card.Text>
-                        <Button variant="primary">Go somewhere</Button>
-                        </Card.Body>
-                    </Card>
+                    <Col>
+                        <Card>
+                            <CardBody>
+                                <CardTitle tag="h5">
+                                    {brewery.brewery_name}
+                                </CardTitle>
+                                <CardText>
+                                    {brewery.history}
+                                </CardText>
+                                <Button>
+                                    Beers
+                                </Button>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                    
+                    
+                    // <Card style={{ width: '18rem' }}>
+                    //     <Card.Img variant="top" src="holder.js/100px180" />
+                    //     <Card.Body>
+                    //     <Card.Title>{brewery.brewery_name}</Card.Title>
+                    //     <Card.Text>
+                    //         {brewery.history}
+                    //     </Card.Text>
+                    //     <Button variant="primary"> Beers </Button>
+                    //     </Card.Body>
+                    // </Card>
                ) 
             })
         ) : (
@@ -47,15 +65,15 @@ class Breweries extends Component {
                 <h1>Loading...</h1>
             </div>);
         return(
-            <div>
+            <Container>
                 <div>
                     <Scroll>
-                        <div className=''>
-                        { breweryList }
-                        </div>
+                        <CardGroup>
+                            { breweryList }
+                        </CardGroup>
                     </Scroll>
                 </div>
-            </div>
+            </Container>
         )
     }
 }

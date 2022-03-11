@@ -6,7 +6,7 @@ import Home from '../Home/Home'
 import {addToken, deleteUser} from '../../Redux/actionCreators'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-import bootstrap from 'bootstrap'
+import 'reactstrap';
 
 const mapStateToProps = state => {
     return {

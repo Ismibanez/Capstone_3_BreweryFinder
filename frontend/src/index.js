@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { Card } from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'reactstrap';
 
 ReactDOM.render(
   <React.StrictMode>

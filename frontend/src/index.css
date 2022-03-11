@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+body{
+  background-color: lightgrey;
+}
+
+.Card {
+  outline: 10px;
+}
