@@ -10,6 +10,8 @@ public interface ReviewDao {
 
     Review getReviewById(int reviewId);
 
+    Review getReviewsByBeerId(int beerId);
+
     boolean createReview(int stars, String review);
 
     boolean deleteReview(int reviewId);
