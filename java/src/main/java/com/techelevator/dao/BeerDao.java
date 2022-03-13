@@ -21,5 +21,5 @@ public interface BeerDao {
 
     boolean updateById(int beerId, Beer updateBeer);
 
-    Beer getBeerByBreweryId(int brewery_id);
+    List<Beer> getBeerByBreweryId(int brewery_id);
 }

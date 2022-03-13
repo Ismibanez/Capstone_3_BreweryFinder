@@ -10,7 +10,7 @@ public interface ReviewDao {
 
     Review getReviewById(int reviewId);
 
-    Review getReviewsByBeerId(int beerId);
+    List<Review> getReviewsByBeerId(int beerId);
 
     boolean createReview(int stars, String review);
 

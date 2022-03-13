@@ -30,7 +30,7 @@ public class BeerController {
     }
 
     @RequestMapping(value="/brewery_id/{brewery_id}", method= RequestMethod.GET)
-    public Beer getBeerByBreweryId(@PathVariable int brewery_id){return beerDao.getBeerByBreweryId(brewery_id);}
+    public List<Beer> getBeerByBreweryId(@PathVariable int brewery_id){return this.beerDao.getBeerByBreweryId(brewery_id);}
 
     @RequestMapping(value = "/name/{beerName}", method = RequestMethod.GET)
     public Beer getBeersByName(@PathVariable ("beerName") String beerName) {

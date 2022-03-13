@@ -29,7 +29,7 @@ public class ReviewController {
     }
 
     @RequestMapping(path="/beer_id/{beerId}", method=RequestMethod.GET)
-    public Review getReviewsByBeerId(@PathVariable int beerId){return reviewDao.getReviewsByBeerId(beerId);}
+    public List<Review> getReviewsByBeerId(@PathVariable int beerId){return reviewDao.getReviewsByBeerId(beerId);}
 
     @RequestMapping(path = "/{beerId}", method = RequestMethod.POST)
     public Review createReview(@RequestBody Review review, @PathVariable int beerId) {

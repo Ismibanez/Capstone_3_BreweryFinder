@@ -59,8 +59,8 @@ public class JdbcReviewDao implements ReviewDao{
     }
 
     @Override
-    public Review getReviewsByBeerId(int beerId) {
-        Review review = null;
+    public List<Review> getReviewsByBeerId(int beerId) {
+        List<Review> reviews = new ArrayList<>();
 
         String sql = "SELECT * FROM reviews " +
                 "JOIN beer_reviews" +
@@ -69,9 +69,10 @@ public class JdbcReviewDao implements ReviewDao{
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, beerId);
         if(results.next()) {
-            review = mapRowToReview(results);
+            Review review = mapRowToReview(results);
+            reviews.add(review);
         }
-        return review;
+        return reviews;
     }
 
 
