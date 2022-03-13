@@ -22,11 +22,6 @@ class Home extends Component{
                                 <Breweries/>
                             </Col>
                         </Row>
-                        <Row>
-                            <Col>
-                                <Beers/>
-                            </Col>
-                        </Row>
                     </Container>
                 </div>
             </div>

@@ -3,6 +3,7 @@ import { Component } from 'react/cjs/react.production.min';
 import axios from 'axios';
 import Scroll from '../Scroll';
 import { Card, CardBody, CardTitle, CardText, Button, Container, Col, CardGroup } from 'reactstrap';
+import { NavLink } from 'react-router-dom';
 
 class Breweries extends Component {
     
@@ -43,12 +44,9 @@ class Breweries extends Component {
                                     {brewery.history}
                                 </CardText>
                                 <Col className='d-flex justify-content-center'>
-                                    {/* <Button onClick={ this.setState({ breweryId: brewery.brewery_id }) }>
-                                        Visit Site 
-                                    </Button> */}
-                                    <a href='./SiteBrewery.js' className='btn btn-secondary'>
+                                    <NavLink to='/SiteBrewery' className='btn btn-secondary' onClick={() => {this.setState({ breweryId: brewery.brewery_id });}}>
                                         Visit Site
-                                    </a>
+                                    </NavLink>
                                 </Col>
                             </CardBody>
                         </Card>

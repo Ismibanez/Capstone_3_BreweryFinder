@@ -6,10 +6,11 @@ import Scroll from '../Scroll';
 
 class Beers extends Component {
     
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
-            beers: [ ]
+            beers: [ ],
+            brewery_id: this.props.brewery_id
         }
     }  
 
@@ -27,7 +28,7 @@ class Beers extends Component {
         const { beers } = this.state;
         const beerList = beers.length ? (
             beers.map(beer => {
-               return (
+                return (
                     <Col sm="3">
                         <Card body color="secondary" outline >
                             <CardBody>
@@ -45,7 +46,7 @@ class Beers extends Component {
                             </CardBody>
                         </Card>
                     </Col>
-               ) 
+               )
             })
         ) : (
             <div className="center"> 
