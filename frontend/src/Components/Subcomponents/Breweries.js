@@ -1,18 +1,18 @@
 import React from 'react'
 import { Component } from 'react/cjs/react.production.min';
-import CardList from '../CardList';
 import axios from 'axios';
-import Header from './Header';
-// import { Container, Card, Button } from 'react-bootstrap'
 import Scroll from '../Scroll';
 import { Card, CardBody, CardTitle, CardText, Button, Container, Col, CardGroup } from 'reactstrap';
 
 class Breweries extends Component {
     
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
-            breweries: [ ]
+            breweries: [ ],
+            breweryId: "",
+            token: props.token,
+            user: props.user
         }
     }  
 
@@ -25,6 +25,8 @@ class Breweries extends Component {
                 })
             })
     }
+
+   
     
     render() {
         const { breweries } = this.state;
@@ -34,30 +36,24 @@ class Breweries extends Component {
                     <Col>
                         <Card>
                             <CardBody>
-                                <CardTitle tag="h5">
+                                <CardTitle tag="h5" className='d-flex justify-content-center'>
                                     {brewery.brewery_name}
                                 </CardTitle>
-                                <CardText>
+                                <CardText className='d-flex justify-content-center'>
                                     {brewery.history}
                                 </CardText>
-                                <Button>
-                                    Beers
-                                </Button>
+                                <Col className='d-flex justify-content-center'>
+                                    {/* <Button onClick={ this.setState({ breweryId: brewery.brewery_id }) }>
+                                        Visit Site 
+                                    </Button> */}
+                                    <a href='./SiteBrewery.js' className='btn btn-secondary'>
+                                        Visit Site
+                                    </a>
+                                </Col>
                             </CardBody>
                         </Card>
                     </Col>
                     
-                    
-                    // <Card style={{ width: '18rem' }}>
-                    //     <Card.Img variant="top" src="holder.js/100px180" />
-                    //     <Card.Body>
-                    //     <Card.Title>{brewery.brewery_name}</Card.Title>
-                    //     <Card.Text>
-                    //         {brewery.history}
-                    //     </Card.Text>
-                    //     <Button variant="primary"> Beers </Button>
-                    //     </Card.Body>
-                    // </Card>
                ) 
             })
         ) : (

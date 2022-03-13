@@ -7,6 +7,7 @@ import {addToken, deleteUser} from '../../Redux/actionCreators'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import 'reactstrap';
+import SiteBrewery from '../Subcomponents/SiteBrewery'
 
 const mapStateToProps = state => {
     return {
@@ -38,7 +39,6 @@ class Main extends Component {
                             <Link to='/home'>Home | </Link>
                             <Link to='/login' onClick={this.handleLogout}>logout</Link> 
                             <Redirect to='/home'/>
-
                         </div>  
                     : 
                         <Link to='/login'>Home | </Link>
@@ -48,6 +48,7 @@ class Main extends Component {
                     <Route path='/register'component={() => <Register/>}/>
                     <Route path='/home' component={this.props.token.token !== undefined ? () => <Home/> : null}/>
                     <Redirect to='/login'/>
+                    <Route path='/SiteBrewery' component={this.props.token.token !== undefined ? () => <SiteBrewery/> : null}/>
                 </Switch>
             </div>
         )

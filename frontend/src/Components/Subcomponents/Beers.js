@@ -1,8 +1,6 @@
 import React from 'react'
 import { Component } from 'react/cjs/react.production.min';
-import CardList from '../CardList';
 import axios from 'axios';
-import Header from './Header';
 import { Card, CardBody, CardTitle, CardText, Button, Container, Col, CardGroup } from 'reactstrap';
 import Scroll from '../Scroll';
 
@@ -33,15 +31,17 @@ class Beers extends Component {
                     <Col sm="3">
                         <Card body color="secondary" outline >
                             <CardBody>
-                                <CardTitle tag="h3">
+                                <CardTitle tag="h3" className='d-flex justify-content-center'>
                                     {beer.beerName}
                                 </CardTitle>
-                                <CardText>
+                                <CardText className='d-flex justify-content-center'>
                                     {beer.description}
                                 </CardText>
-                                <Button>
-                                    Reviews
-                                </Button>
+                                <Col className='d-flex justify-content-center'>
+                                    <Button >
+                                        Reviews
+                                    </Button>
+                                </Col>
                             </CardBody>
                         </Card>
                     </Col>
