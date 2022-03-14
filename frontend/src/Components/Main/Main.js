@@ -57,9 +57,9 @@ class Main extends Component {
                             <NavbarText >
                                 <Link to='/home' className='btn btn-secondary'>Home </Link>
                             </NavbarText>
-                            <NavItem>
+                            <NavbarText >
                                 <Link to='/login' className='btn btn-secondary me-5 pe-5' onClick={this.handleLogout}>Logout</Link>
-                            </NavItem>
+                            </NavbarText >
                             
                             <Redirect to='/home'/>
                         </Navbar>  
