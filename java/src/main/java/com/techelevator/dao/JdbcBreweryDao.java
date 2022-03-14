@@ -70,7 +70,7 @@ public class JdbcBreweryDao implements BreweryDao{
         String insertBrewery = "INSERT INTO brewery (brewery_name, phone_number, history, hours_of_operation, images, address, activity) values(?,?,?,?,?,?,?)";
 
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
-        String id_column = "beer_id";
+        String id_column = "brewery_id";
         breweryCreated = jdbcTemplate.update(con -> {
             PreparedStatement ps = con.prepareStatement(insertBrewery, new String[]{id_column});
             ps.setString(1, brewery_name);

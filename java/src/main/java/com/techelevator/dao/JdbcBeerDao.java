@@ -48,9 +48,9 @@ public class JdbcBeerDao implements BeerDao {
     }
 
     @Override
-    public Beer findByName(String beerName) {
+    public Beer findByName(String beer_name) {
         for (Beer beer : this.findAll()) {
-            if( beer.getBeerName().toLowerCase().equals(beerName.toLowerCase())) {
+            if( beer.getBeer_name().toLowerCase().equals(beer_name.toLowerCase())) {
                 return beer;
             }
         }
@@ -58,12 +58,12 @@ public class JdbcBeerDao implements BeerDao {
     }
 
     @Override
-    public int findIdByName(String beerName) {
-        return jdbcTemplate.queryForObject("SELECT beer_id FROM beers WHERE beer_name = ?", int.class, beerName);
+    public int findIdByName(String beer_name) {
+        return jdbcTemplate.queryForObject("SELECT beer_id FROM beers WHERE beer_name = ?", int.class, beer_name);
     }
 
     @Override
-    public boolean create(String beerName, String description, String image, int abv, String type) {
+    public boolean create(String beer_name, String description, String image, int abv, String type) {
         boolean beerCreated = false;
 
         String insertBeer = "INSERT INTO beers (beer_name, description, image, abv, type) values(?,?,?,?,?)";
@@ -72,7 +72,7 @@ public class JdbcBeerDao implements BeerDao {
         String id_column = "beer_id";
         beerCreated = jdbcTemplate.update(con -> {
                 PreparedStatement ps = con.prepareStatement(insertBeer, new String[]{id_column});
-                ps.setString(1, beerName);
+                ps.setString(1, beer_name);
                 ps.setString(2, description);
                 ps.setString(3, image);
                 ps.setInt(4, abv);
@@ -92,7 +92,7 @@ public class JdbcBeerDao implements BeerDao {
     @Override
     public boolean updateById(int beerId, Beer updateBeer) {
         String sql = "UPDATE beers SET beer_name = ?, description = ?, abv = ?, image = ?, type = ? WHERE beer_id = ?";
-        return jdbcTemplate.update(sql, updateBeer.getBeerName(), updateBeer.getDescription(), updateBeer.getAbv(), updateBeer.getImage(), updateBeer.getType(), beerId) == 1;
+        return jdbcTemplate.update(sql, updateBeer.getBeer_name(), updateBeer.getDescription(), updateBeer.getAbv(), updateBeer.getImage(), updateBeer.getType(), beerId) == 1;
 
 
     }
@@ -107,7 +107,7 @@ public class JdbcBeerDao implements BeerDao {
                     " WHERE brewery_id = ?";
 
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, brewery_id);
-            if(results.next()) {
+            while(results.next()) {
                 Beer beer = mapRowToBeer(results);
                 beers.add(beer);
             }
@@ -118,7 +118,7 @@ public class JdbcBeerDao implements BeerDao {
     private Beer mapRowToBeer(SqlRowSet rs) {
         Beer beer = new Beer();
         beer.setBeer_id(rs.getInt("beer_id"));
-        beer.setBeerName(rs.getString("beer_name"));
+        beer.setBeer_name(rs.getString("beer_name"));
         beer.setDescription(rs.getString("description"));
         beer.setAbv(rs.getInt("abv"));
         beer.setImage(rs.getString("image"));

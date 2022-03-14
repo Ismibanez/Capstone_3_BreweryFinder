@@ -11,11 +11,11 @@ public interface BeerDao {
 
     Beer getBeerById(int beerId);
 
-    Beer findByName(String beerName);
+    Beer findByName(String beer_name);
 
-    int findIdByName(String beerName);
+    int findIdByName(String beer_name);
 
-    boolean create(String beerName, String description, String image, int abv, String type);
+    boolean create(String beer_name, String description, String image, int abv, String type);
 
     boolean deleteBeer(int beerId);
 

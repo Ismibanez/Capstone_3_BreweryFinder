@@ -68,7 +68,7 @@ public class JdbcReviewDao implements ReviewDao{
                 "WHERE beer_id=?";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, beerId);
-        if(results.next()) {
+        while(results.next()) {
             Review review = mapRowToReview(results);
             reviews.add(review);
         }

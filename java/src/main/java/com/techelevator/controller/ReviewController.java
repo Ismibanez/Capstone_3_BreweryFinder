@@ -31,8 +31,8 @@ public class ReviewController {
     @RequestMapping(path="/beer_id/{beerId}", method=RequestMethod.GET)
     public List<Review> getReviewsByBeerId(@PathVariable int beerId){return reviewDao.getReviewsByBeerId(beerId);}
 
-    @RequestMapping(path = "/{beerId}", method = RequestMethod.POST)
-    public Review createReview(@RequestBody Review review, @PathVariable int beerId) {
+    @RequestMapping(method = RequestMethod.POST)
+    public Review createReview(@RequestBody Review review) {
         this.reviewDao.createReview(review.getStars(), review.getReview());
         return review;
     }
