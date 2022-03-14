@@ -1,27 +1,28 @@
 import axios from 'axios';
 import {useState} from 'react'
 import { Stack } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import {Link} from 'react-router-dom'
 import { Container } from 'reactstrap';
 import { baseUrl } from '../../Shared/baseUrl';
 
-const Register = (props) => {
+const NewBrewer = (props) => {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
     const handleSubmit = () => {
-        const data = {username: username, password: password, confirmPassword: confirmPassword, role: 'ROLE_USER'}
+        const data = {username: username, password: password, confirmPassword: confirmPassword, role: 'ROLE_BREWER'}
         if(password === confirmPassword){
             axios.post(baseUrl + "/register", data)
         }
+        this.props.router.push('/createBrewery')
     }
 
     return(
         <Container className='mt-5 pt-3'>
-            <h1 className='text-center'>Create Account</h1>
+            <h1 className='text-center'>Create New Brewer Account</h1>
             <label class="sr-only">Username</label>
             <input
                 type="text"
@@ -54,15 +55,21 @@ const Register = (props) => {
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
             />
-            <Stack className='mt-3' direction='horizontal'>
+            <label class="sr-only">State Liscense #</label>
+            <input
+                type="text"
+                id="Liscense"
+                name="Liscense"
+                class="form-control"
+                placeholder="Liscense #"
+                required
+            />
+            <Stack direction="horizontal" gap={4} className='mt-3'>
                 <button type="submit" onClick={handleSubmit} className='btn btn-secondary'>Sign Up</button>
                 <Link to="/login" className='btn btn-secondary ms-auto'>Already have an account?</Link>
             </Stack>
-            
-           
-            
         </Container>
     )
 }
 
-export default Register;
+export default NewBrewer;

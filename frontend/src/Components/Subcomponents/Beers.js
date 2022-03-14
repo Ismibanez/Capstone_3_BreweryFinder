@@ -1,7 +1,7 @@
 import React from 'react'
 import { Component } from 'react/cjs/react.production.min';
 import axios from 'axios';
-import { Card, CardBody, CardTitle, CardText, Button, Container, Col, CardGroup } from 'reactstrap';
+import { Card, CardBody, CardTitle, CardText, Button, Container, Col, CardGroup, CardSubtitle } from 'reactstrap';
 import Scroll from '../Scroll';
 
 class Beers extends Component {
@@ -10,14 +10,16 @@ class Beers extends Component {
         super(props)
         this.state = {
             beers: [ ],
-            brewery_id: this.props.brewery_id
+            breweryId: this.props.breweryId
         }
     }  
 
-    componentDidMount() {
+    componentDidMount() {        
+        
         axios.get('http://localhost:8081/beers')
             .then(res => {
                 console.log(res)
+                console.log(this.state.breweryId)
                 this.setState({
                     beers: res.data
                 })

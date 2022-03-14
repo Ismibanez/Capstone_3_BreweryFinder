@@ -5,6 +5,8 @@ import {withRouter} from 'react-router-dom'
 import {addToken, addUser} from '../../Redux/actionCreators'
 import {baseUrl} from '../../Shared/baseUrl'
 import axios from 'axios'
+import { Container } from 'reactstrap'
+import { Stack } from 'react-bootstrap'
 
 
 
@@ -45,8 +47,8 @@ class Login extends Component {
 
     render(){
         return(
-            <div>
-                <h1>Please Sign In</h1>
+            <Container className='mt-5 pt-3'>
+                <h1 className='text-center'>Please Sign In</h1>
                 <label class="sr-only">Username</label>
                 <input
                     type="text"
@@ -69,9 +71,13 @@ class Login extends Component {
                     onChange={this.handleInputChange}
                     required
                 />
-                <Link to="/register">Need an account?</Link>
-                <button type="submit" onClick={this.handleLogin}>Sign in</button>
-            </div>
+                <Stack direction="horizontal" gap={4} className='mt-3'>
+                    <button type="submit" onClick={this.handleLogin} className='btn btn-secondary'>Sign in</button>
+                    <Link to="/register" className='btn btn-secondary ms-auto'>New account?</Link>
+                    <Link to='/newBrewer' className='btn btn-secondary'>New Brewer?</Link>
+                </Stack>
+                
+            </Container>
         )
     }
 }

@@ -8,6 +8,10 @@ import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import 'reactstrap';
 import SiteBrewery from '../Subcomponents/SiteBrewery'
+import NewBrewer from '../Register/NewBrewer'
+import { Stack } from 'react-bootstrap'
+import { Navbar, NavbarBrand, NavbarText, NavItem } from 'reactstrap'
+import CreateBrewery from '../Register/CreateBrewery'
 
 const mapStateToProps = state => {
     return {
@@ -35,17 +39,50 @@ class Main extends Component {
         return(
             <div>
                 {this.props.token.token !== undefined ?
-                        <div>
-                            <Link to='/home'>Home | </Link>
-                            <Link to='/login' onClick={this.handleLogout}>logout</Link> 
+                                          
+                        <Navbar color="secondary"
+                        expand
+                        fixed="top"
+                        full
+                        dark
+                        >
+                            <NavbarBrand className='me-auto offset-1'>
+                                BreweryFinder
+                            </NavbarBrand>
+                            <NavbarText className='fw-bolder text-white'>
+                                <div className='me-4'>
+                                    Hello, {this.props.user.username}!
+                                </div>
+                            </NavbarText>
+                            <NavbarText >
+                                <Link to='/home' className='btn btn-secondary'>Home </Link>
+                            </NavbarText>
+                            <NavItem>
+                                <Link to='/login' className='btn btn-secondary me-5 pe-5' onClick={this.handleLogout}>Logout</Link>
+                            </NavItem>
+                            
                             <Redirect to='/home'/>
-                        </div>  
+                        </Navbar>  
                     : 
-                        <Link to='/login'>Home | </Link>
+                    <Navbar color="secondary"
+                    expand
+                    fixed="top"
+                    full
+                    dark
+                    >
+                        <NavbarBrand className='me-auto offset-1'>
+                            BreweryFinder
+                        </NavbarBrand>
+                        <NavItem>
+                            <Link to='/login' className='btn btn-secondary me-5 pe-5'>Home </Link>
+                        </NavItem>
+                    </Navbar>
                 }
                 <Switch>
                     <Route path='/login' component={() => <Login/>}/>
                     <Route path='/register'component={() => <Register/>}/>
+                    <Route path='/newBrewer' component={() => <NewBrewer/>}/>
+                    <Route path='/createBrewery' component={() => <CreateBrewery/>}/>
                     <Route path='/home' component={this.props.token.token !== undefined ? () => <Home/> : null}/>
                     <Route path='/SiteBrewery' component={this.props.token.token !== undefined ? () => <SiteBrewery/> : null}/>
                     <Redirect to='/login'/>

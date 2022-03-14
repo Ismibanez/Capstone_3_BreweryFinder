@@ -2,8 +2,9 @@ import React from 'react'
 import { Component } from 'react/cjs/react.production.min';
 import axios from 'axios';
 import Scroll from '../Scroll';
-import { Card, CardBody, CardTitle, CardText, Button, Container, Col, CardGroup } from 'reactstrap';
+import { Card, CardBody, CardTitle, CardText, Button, Container, Col, CardGroup, CardSubtitle } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
+import Beers from './Beers';
 
 class Breweries extends Component {
     
@@ -55,8 +56,8 @@ class Breweries extends Component {
                ) 
             })
         ) : (
-            <div className="center"> 
-                <h1>Loading...</h1>
+            <div> 
+                <h1 className="text-center">Loading...</h1>
             </div>);
         return(
             <Container>

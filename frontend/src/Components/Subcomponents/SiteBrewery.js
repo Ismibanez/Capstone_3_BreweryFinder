@@ -3,6 +3,7 @@ import { Component } from 'react/cjs/react.production.min';
 import {Container, Col, Row} from 'reactstrap';
 import Beers from './Beers';
 import Header from './Header';
+import Footer from './Footer';
 
 class SiteBrewery extends Component {
     constructor(props) {
@@ -14,15 +15,25 @@ class SiteBrewery extends Component {
 
     render() {
         return(
-            <Container>
+            <Container className='mt-5 pt-3'>
                 <Row>
                     <Col>
                         <Header/>
                     </Col>
                 </Row>
-                <Row>
+                <Container className='mt-5 pt-3'>
+                    <Row>
+                        Lets try this agian I guess
+                    </Row>
+                </Container>
+                <Row className='mt-5 pt-3'>
                     <Col>
                         <Beers/>
+                    </Col>
+                </Row>
+                <Row className='mt-5 pt-3'>
+                    <Col>
+                        <Footer/>
                     </Col>
                 </Row>
             </Container>

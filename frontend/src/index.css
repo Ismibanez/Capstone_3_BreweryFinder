@@ -19,3 +19,9 @@ body{
 .Card {
   outline: 10px;
 }
+
+body {
+  background-image: url(https://craftbeerclub.com/media/gm/user/gmwc/blog/blog-cbc-09-16-16.jpeg);
+  background-color: #cccccc;
+  background-size: cover;
+ }
