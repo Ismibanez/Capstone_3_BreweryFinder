@@ -45,7 +45,7 @@ class Breweries extends Component {
                                     {brewery.history}
                                 </CardText>
                                 <Col className='d-flex justify-content-center'>
-                                    <NavLink to='/SiteBrewery' className='btn btn-secondary' onClick={() => {this.setState({ breweryId: brewery.brewery_id });}}>
+                                    <NavLink to={`/SiteBrewery/${brewery.brewery_id}`} className='btn btn-secondary' onClick={() => {this.setState({ breweryId: brewery.brewery_id });}}>
                                         Visit Site
                                     </NavLink>
                                 </Col>

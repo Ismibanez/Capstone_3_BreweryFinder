@@ -9,9 +9,19 @@ class SiteBrewery extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            brewery_id: props.brewery_id,
+            breweryId: this.props.breweryId,
         }
     } 
+    //lets try yt video, sending id to site brewery,
+    //from site brewery to beers
+    // componentDidMount () {
+    //     const { handle } = this.props.match.params
+
+       
+    //     console.log( fetch(`http://localhost:8081/beers/brewery_id/${handle}`))
+
+    // }
+
 
     render() {
         return(
@@ -19,13 +29,11 @@ class SiteBrewery extends Component {
                 <Row>
                     <Col>
                         <Header/>
+                        <h1>
+                        { this.state.breweryId }
+                        </h1>
                     </Col>
                 </Row>
-                <Container className='mt-5 pt-3'>
-                    <Row>
-                        Lets try this agian I guess
-                    </Row>
-                </Container>
                 <Row className='mt-5 pt-3'>
                     <Col>
                         <Beers/>

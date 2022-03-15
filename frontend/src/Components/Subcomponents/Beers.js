@@ -3,6 +3,7 @@ import { Component } from 'react/cjs/react.production.min';
 import axios from 'axios';
 import { Card, CardBody, CardTitle, CardText, Button, Container, Col, CardGroup, CardSubtitle } from 'reactstrap';
 import Scroll from '../Scroll';
+import Breweries from './Breweries';
 
 class Beers extends Component {
     
@@ -14,16 +15,26 @@ class Beers extends Component {
         }
     }  
 
-    componentDidMount() {        
+    async componentDidMount() {        
         
-        axios.get('http://localhost:8081/beers')
-            .then(res => {
-                console.log(res)
-                console.log(this.state.breweryId)
-                this.setState({
-                    beers: res.data
-                })
-            })
+        const brewery_id = this.state.breweryId;
+        const url = `http://localhost:8081/beers/brewery_id/` + brewery_id;
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log(data);
+        this.setState({
+            beers: data
+        })
+
+
+        // axios.get(`http://localhost:8081/beers/brewery_id/` + brewery_id)
+        //     .then(res => {
+        //         console.log(res)
+        //         console.log(this.state.breweryId)
+        //         this.setState({
+        //             beers: res.data
+        //         })
+        //     })
     }
     
     render() {
