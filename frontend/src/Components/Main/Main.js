@@ -8,8 +8,8 @@ import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import 'reactstrap';
 import SiteBrewery from '../Subcomponents/SiteBrewery'
+import SiteBeer from '../Subcomponents/SiteBeer'
 import NewBrewer from '../Register/NewBrewer'
-import { Stack } from 'react-bootstrap'
 import { Navbar, NavbarBrand, NavbarText, NavItem } from 'reactstrap'
 import CreateBrewery from '../Register/CreateBrewery'
 
@@ -85,6 +85,7 @@ class Main extends Component {
                     <Route path='/createBrewery' component={() => <CreateBrewery/>}/>
                     <Route path='/home' component={this.props.token.token !== undefined ? () => <Home/> : null}/>
                     <Route path='/SiteBrewery/:breweryId' component={this.props.token.token !== undefined ? () => <SiteBrewery/> : null}/>
+                    <Route path='/SiteBeer' component={this.props.token.token !== undefined ? () => <SiteBeer/> : null}/>
                     <Redirect to='/login'/>
                 </Switch>
             </div>

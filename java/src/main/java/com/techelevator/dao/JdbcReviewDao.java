@@ -60,20 +60,26 @@ public class JdbcReviewDao implements ReviewDao{
 
     @Override
     public List<Review> getReviewsByBeerId(int beerId) {
-        List<Review> reviews = new ArrayList<>();
-
-        String sql = "SELECT * FROM reviews " +
-                "JOIN beer_reviews" +
-                " ON reviews.review_id=beer_reviews.review_id " +
-                "WHERE beer_id=?";
-
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, beerId);
-        while(results.next()) {
-            Review review = mapRowToReview(results);
-            reviews.add(review);
-        }
-        return reviews;
+        return null;
     }
+
+
+//    @Override
+//    public List<Review> getReviewsByBeerId(int beerId) {
+//        List<Review> reviews = new ArrayList<>();
+//
+//        String sql = "SELECT * FROM reviews " +
+//                "JOIN beer_reviews" +
+//                " ON reviews.review_id=beer_reviews.review_id " +
+//                "WHERE beer_id=?";
+//
+//        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, beerId);
+//        while(results.next()) {
+//            Review review = mapRowToReview(results);
+//            reviews.add(review);
+//        }
+//        return reviews;
+//    }
 
 
     @Override

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Card, CardBody, CardTitle, CardText, Button, Container, Col, CardGroup, CardSubtitle } from 'reactstrap';
 import Scroll from '../Scroll';
 import Breweries from './Breweries';
+import { NavLink } from 'react-router-dom';
 
 class Beers extends Component {
     
@@ -15,26 +16,25 @@ class Beers extends Component {
         }
     }  
 
-    async componentDidMount() {        
+    componentDidMount() {        
         
-        const brewery_id = this.state.breweryId;
-        const url = `http://localhost:8081/beers/brewery_id/` + brewery_id;
-        const response = await fetch(url);
-        const data = await response.json();
-        console.log(data);
-        this.setState({
-            beers: data
-        })
+        // const brewery_id = this.state.breweryId;
+        // const url = `http://localhost:8081/beers/brewery_id/` + brewery_id;
+        // const response = await fetch(url);
+        // const data = await response.json();
+        // console.log(data);
+        // this.setState({
+        //     beers: data
+        // })
 
 
-        // axios.get(`http://localhost:8081/beers/brewery_id/` + brewery_id)
-        //     .then(res => {
-        //         console.log(res)
-        //         console.log(this.state.breweryId)
-        //         this.setState({
-        //             beers: res.data
-        //         })
-        //     })
+        axios.get('http://localhost:8081/beers')
+            .then(res => {
+                console.log(res)
+                this.setState({
+                    beers: res.data
+                })
+            })
     }
     
     render() {
@@ -46,15 +46,17 @@ class Beers extends Component {
                         <Card body color="secondary" outline >
                             <CardBody>
                                 <CardTitle tag="h3" className='d-flex justify-content-center'>
-                                    {beer.beerName}
+                                    {beer.beer_name}
                                 </CardTitle>
                                 <CardText className='d-flex justify-content-center'>
                                     {beer.description}
                                 </CardText>
                                 <Col className='d-flex justify-content-center'>
-                                    <Button >
-                                        Reviews
-                                    </Button>
+                                    <NavLink to={`/SiteBeer/${beer.beerId}`} className='btn btn-secondary' onClick={() => {this.setState({
+                                        beerId: beer.beerId
+                                    })}}>
+                                        Reviews    
+                                    </NavLink>
                                 </Col>
                             </CardBody>
                         </Card>

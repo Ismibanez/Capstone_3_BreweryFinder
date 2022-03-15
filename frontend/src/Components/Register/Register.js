@@ -8,11 +8,12 @@ import { baseUrl } from '../../Shared/baseUrl';
 
 const Register = (props) => {
 
+    const redirect = useState(false)
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
         const data = {username: username, password: password, confirmPassword: confirmPassword, role: 'ROLE_USER'}
         if(password === confirmPassword){
             axios.post(baseUrl + "/register", data)
@@ -20,7 +21,7 @@ const Register = (props) => {
     }
 
     return(
-        <Container className='mt-5 pt-3'>
+        <Container className='mt-5 pt-3 '>
             <h1 className='text-center'>Create Account</h1>
             <label class="sr-only">Username</label>
             <input
@@ -54,7 +55,7 @@ const Register = (props) => {
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
             />
-            <Stack className='mt-3' direction='horizontal'>
+            <Stack className='mt-3' direction='horizontal' >
                 <button type="submit" onClick={handleSubmit} className='btn btn-secondary'>Sign Up</button>
                 <Link to="/login" className='btn btn-secondary ms-auto'>Already have an account?</Link>
             </Stack>

@@ -97,7 +97,6 @@ public class JdbcBeerDao implements BeerDao {
 
     }
 
-    @Override
     public List<Beer> getBeerByBreweryId(int brewery_id) {
             List<Beer> beers = new ArrayList<>();
 

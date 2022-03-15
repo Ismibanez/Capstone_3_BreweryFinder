@@ -29,17 +29,17 @@ class Reviews extends Component {
             reviews.map(review => {
                return (
                     <Col sm="3">
-                        <Card body color="secondary" outline >
-                            <CardBody>
-                                <CardTitle tag="h3" className='d-flex justify-content-center'>
-                                    {review.stars}
-                                </CardTitle>
-                                <CardText className='d-flex justify-content-center'>
-                                    {review.review}
-                                </CardText>
-                            </CardBody>
-                        </Card>
-                    </Col>
+                    <Card body color="secondary" outline>
+                        <CardBody>
+                            <CardTitle tag="h3" className='d-flex justify-content-center'>
+                                {review.stars}
+                            </CardTitle>
+                            <CardText className='d-flex justify-content-center'>
+                                {review.review}
+                            </CardText>
+                        </CardBody>
+                    </Card>
+                </Col>
                ) 
             })
         ) : (

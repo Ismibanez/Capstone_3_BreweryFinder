@@ -39,7 +39,7 @@ public class JdbcBreweryDao implements BreweryDao{
     public Brewery getBreweryById(int brewery_id) {
         Brewery brewery = null;
 
-        String sql = "SELECT * FROM brewery WHERE beer_id = ?";
+        String sql = "SELECT * FROM brewery WHERE brewery_id = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, brewery_id);
         if(results.next()) {
             brewery = mapRowToBrewery(results);
